@@ -14,7 +14,7 @@ class Room:
     """
     This class creates room objects, which are effectively like discord channels.
     They store the chat messages, and the users connected to the room.
-    Each server has at least on room. For now I haven't implemented the ability to add rooms, but it is not hard.
+    Each server has at least on room. For now, I haven't implemented the ability to add rooms, but it is not hard.
     """
     
     def __init__(self,name,chat_file = None, messages = []):
@@ -34,7 +34,7 @@ class Room:
 
         except FileNotFoundError:
             self.messages = messages
-            history = "an empty history" if messages else "the inputed history"
+            history = "an empty history" if messages else "the inputted history"
             Shortcut.print_warning(f"Could not access {self.chat_file} for the old chat messages. Initializing chat with {history}.")
 
         self.connected_users = []
@@ -127,7 +127,7 @@ class Server:
         Running the server loops over all the clients connected or trying to connect and does the following:
         If the client is trying to connect, the server authenticates the client's account.
         If the client is already connected, the server updates it with the most recent updates for the room they are in
-        after checking what messages the client inputted. TODO Make the client update immediatly after the server recives a message
+        after checking what messages the client inputted. TODO Make the client update immediately after the server receives a message
         and not after sending a message their selves.
         """
 
@@ -144,12 +144,12 @@ class Server:
                             continue
                         self.send_new_data(current_socket)
             except Exception as e:
-                Shortcut.print_warning(f"Exception occured: {e}")
+                Shortcut.print_warning(f"Exception occurred: {e}")
 
     def deal_with_new_connection(self,socket):
         """
         This deals with the connection from a new client. It creates a user for them, and tries to sign them in
-        to the account they requested and then move them to the room they want . TODO implement respose for wrong password
+        to the account they requested and then move them to the room they want . TODO implement response for wrong password
         """
         authenticated,new_user = self.generate_user(socket)
         
@@ -162,10 +162,10 @@ class Server:
     
     def generate_user(self,socket):
         # creates a user and attempt to connect them to an account.
-        connection,client_adress = socket.accept()
+        connection,client_address = socket.accept()
         self.signed_out_clients.append(connection)
 
-        new_user = User(connection,client_adress,self.max_msg_length)
+        new_user = User(connection,client_address,self.max_msg_length)
         username,password = new_user.get_sign_in_info()
 
         authenticated,self.accounts = new_user.sign_in(username,password,self.accounts)
@@ -194,7 +194,7 @@ class Server:
 
 
     def get_new_data(self,socket):
-        # If user sent data, catagorize it, and deal with it
+        # If user sent data, categorize it, and deal with it
         data = socket.recv(self.max_msg_length).decode("utf-8")
         user = self.socket_to_user[socket]
         room = self.socket_to_room[socket]

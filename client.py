@@ -136,7 +136,7 @@ class ChatClient:
 
     def exit_chat(self):
         """Exit the chat and close the socket."""
-        self.running = False  # Stop the receive thread
+        self.running = False  # Stop the receiving thread
         try:
             self.my_socket.send("Exit".encode("utf-8"))
             self.my_socket.close()

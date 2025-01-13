@@ -2,7 +2,7 @@ import time
 
 class Clock:
     """
-    Stores everything to do with time in the program. Currently provides the date and time in a formatted way.
+    Stores everything to do with time in the program. Currently, provides the date and time in a formatted way.
     """
 
     @staticmethod
@@ -14,7 +14,7 @@ class Clock:
             day = current_time.tm_mday
             return f"{year}/{month:02d}/{day:02d}"
         except Exception as e:
-            return "Error, could not acess the date. Exeption" + e
+            return "Error, could not access the date. Exception" + e
 
     @staticmethod
     def get_time():
@@ -26,7 +26,7 @@ class Clock:
 
             return f"{hour:02d}:{minute:02d}:{second:02d}"
         except Exception as e:
-            return "Error, could not acess the time. Exeption" + e
+            return "Error, could not access the time. Exception" + e
 
     @staticmethod
     def get_date_time():

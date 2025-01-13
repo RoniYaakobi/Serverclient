@@ -1,7 +1,7 @@
 from shortcuts import Shortcut
 from clock import Clock
 
-# A object that stores all the shortcuts used in all the modules
+# An object that stores all the shortcuts used in all the modules
 
 class Account:
     """
@@ -81,12 +81,12 @@ class User:
     def sign_in(self,username,password,accounts):
         """
         This method checks if username already has an account. If it does, it checks the password, to see 
-        if the right password has been entered. Otherwise it creates a new account for the user.
+        if the right password has been entered. Otherwise, it creates a new account for the user.
         """
         
         Shortcut.print_initializing(f"User at {self.ip} attempted to connect to account {username} with password {password}")
 
-        if does_account_exsist(username,accounts): # Is there a username like the username entered?
+        if does_account_exist(username,accounts): # Is there a username like the username entered?
             account_to_connect = accounts[username]
             can_connect = account_to_connect.authenticate(password)
             if can_connect:
@@ -109,7 +109,7 @@ class User:
         return Shortcut.ACTIVE,accounts
     
     def connect_to_account(self,account,username):
-        # Connect the user to an exsisting account 
+        # Connect the user to an existing account 
         self.account = account
         self.account.signed_in(self.socket,self.ip)
 
@@ -133,8 +133,8 @@ class User:
         return Shortcut.INACTIVE
     
     
-def does_account_exsist(username,accounts):
-    # Check if the account for username exsists
+def does_account_exist(username,accounts):
+    # Check if the account for username exists
     return username in accounts.keys()
         
         

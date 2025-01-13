@@ -19,7 +19,7 @@ class Shortcut:
     # Logging functionality TODO add file logging too.
     @staticmethod
     def print_color(msg,color , clock = True):
-        # format the messgae to go to the log and cmd log.
+        # format the message to go to the log and cmd log.
         print(f"{color}{msg} {f"({Clock.get_date_time()})" if clock else ""}{Shortcut.RESET}")
     
     @staticmethod
